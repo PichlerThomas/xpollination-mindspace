@@ -98,8 +98,8 @@ tree:
                 title: "What is the mindspace vision?"
                 owner: "pdsa-agent"
                 type: "pdsa-cycle"
-                status: "active"
-                pdsa_phase: "plan"
+                status: "complete"
+                pdsa_phase: "complete"
                 pdsa_ref:
                   git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
                   local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
@@ -127,13 +127,13 @@ tree:
                       status: "pass"
                       verifier: "pdsa-agent"
                     - name: "Thomas approves vision"
-                      status: "pending"
+                      status: "pass"
                       verifier: "thomas"
                   outputs:
                     - type: "file"
                       description: "Vision PDSA document"
                       path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
-                  status: "not_done"
+                  status: "done"
 
               - id: "ms-node-schema"
                 title: "What is the exact node schema?"
