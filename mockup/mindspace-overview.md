@@ -47,7 +47,7 @@ mindmap
 ## Current Focus (Scope Stack)
 
 ```
-root → Grammar Phase — 22 questions remaining across active nodes (7 answered)
+root → Grammar Phase — 18 questions remaining (11 answered, Area A+D complete)
 ```
 
 **Phase:** Trivium Grammar — gathering facts, identifying gaps, asking the right questions before building.
@@ -124,7 +124,7 @@ flowchart TD
     vision["Vision PDSA ✅ APPROVED"] --> A
     vision --> C
 
-    A["A. Node Schema<br/>2/6 answered"] --> B["B. State Machine<br/>0/5 answered"]
+    A["A. Node Schema<br/>6/6 answered ✅"] --> B["B. State Machine<br/>0/5 answered"]
     C["C. MCP API & Permissions<br/>0/4 answered"] --> B
     A --> E["E. UX & Dashboard<br/>0/4 answered<br/>⏸ deprioritized"]
     D["D. MVP & Strategy<br/>5/5 answered ✅"] -.->|informs| A
@@ -132,7 +132,7 @@ flowchart TD
     F["F. Process & Zero-Knowledge<br/>0/5 answered"] -.->|informs| C
 
     style vision fill:#22c55e,color:#000
-    style A fill:#f59e0b,color:#000
+    style A fill:#22c55e,color:#000
     style B fill:#f59e0b,color:#000
     style C fill:#f59e0b,color:#000
     style D fill:#22c55e,color:#000
@@ -149,17 +149,17 @@ flowchart TD
 - [x] **Q1: Are the 6 node types complete?** — ANSWERED
   **Decision:** 5 types, not 6. `task`, `pdsa-cycle`, `group`, `decision`, `milestone`. Dropped `quality-gate` (it's a property, not a type) and `scope-break` (it's an event, not a type). Added `group` for container nodes. See Vision PDSA Section 14.3.
 
-- [ ] **Q2: Tree or DAG — can a node have multiple parents?**
-  Vision Section 6.1 says "the mindmap is a tree (not a DAG)." But what if a thought is relevant to two branches? Do we duplicate the node, or allow cross-references? The `dependencies` field allows cross-links, but `children` is strictly tree. Is this the intended model?
+- [x] **Q2: Tree or DAG?** — ANSWERED
+  **Decision:** DAG. DRY principle — a node serving multiple parents exists once. `parent_ids: [uuid]` replaces `parent_id`. See Vision PDSA Section 15.1.
 
-- [ ] **Q3: Node ID format — human-readable or system-generated?**
-  Mockup uses human-readable slugs (`ms-vision`, `mcp-infra-pdsa`). Should the real system use UUIDs for stability (drag-drop won't break IDs) or keep readable slugs for human debugging? Or hybrid (UUID primary key, slug as display alias)?
+- [x] **Q3: Node ID format?** — ANSWERED
+  **Decision:** UUID primary key. Human-readable slugs as optional display aliases. See Vision PDSA Section 15.2.
 
-- [ ] **Q4: Dependencies vs children — when is which?**
-  A child decomposes a thought (is PART OF the parent). A dependency blocks a thought (must COMPLETE before this can start). Example: "Node Schema" is a child of "Requirements" AND a dependency of "Features." Is this distinction always clear? Are there cases where it matters for the state machine?
+- [x] **Q4: Lifecycle node types?** — ANSWERED
+  **Decision:** 12 types based on enterprise IT lifecycle (V-Model + SAFe + observed process). requirement, design, nfr, task, deployment, test, integration, decision, pdsa-cycle, group, milestone, project. Full traceability chain: requirement → design → task ← test. See Vision PDSA Section 15.3.
 
-- [ ] **Q5: Single owner or co-ownership?**
-  Currently each node has one `owner`. Can Thomas and pdsa-agent co-own a node? Or is ownership always singular, with collaboration handled through the orchestrator relay pattern?
+- [x] **Q5: Process chains & agent roles?** — ANSWERED
+  **Decision:** 4 agents: Orchestrator, PDSA, Dev, QA. No agent grades its own work. Each node type has a defined process chain. 8GB RAM budget (Thomas upgrade). See Vision PDSA Section 15.4.
 
 - [x] **Q6: Canonical status set — Vision vs MCP Infra?** — ANSWERED
   **Decision:** 8 canonical statuses: `pending`, `ready`, `active`, `review`, `rework`, `complete`, `blocked`, `cancelled`. Dropped `paused` (subsumed into `blocked`) and `failed` (replaced by `cancelled`). Type-specific workflows limit which states are valid per type. See Vision PDSA Section 14.2.
@@ -269,13 +269,13 @@ flowchart TD
 
 | Area | Total | Answered | Remaining | Status |
 |------|-------|----------|-----------|--------|
-| A. Node Schema | 6 | 2 | 4 | Q1+Q6 answered |
+| A. Node Schema | 6 | 6 | 0 | **Complete** |
 | B. State Machine | 5 | 0 | 5 | Open |
 | C. MCP API & Permissions | 4 | 0 | 4 | Open |
 | D. MVP & Strategy | 5 | 5 | 0 | **Complete** |
 | E. UX & Dashboard | 4 | 0 | 4 | Deprioritized |
 | F. Process & Zero-Knowledge | 5 | 0 | 5 | Open |
-| **Total** | **29** | **7** | **22** | |
+| **Total** | **29** | **11** | **18** | |
 
 ---
 
