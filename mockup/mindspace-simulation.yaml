@@ -10,19 +10,21 @@
 # the experience. Then build the first real iteration informed by that learning.
 #
 # Created: 2026-02-02 (Iteration 4)
+# Schema audit: 2026-02-02 — All nodes now follow Vision PDSA Section 4.1
+#   unified node schema. Every node has pdsa_ref, pdsa_phase, DoR, DoD.
 # =============================================================================
 
 meta:
   title: "XPollination Mindspace"
-  last_updated: "2026-02-02T15:30:00Z"
+  last_updated: "2026-02-02T18:00:00Z"
   updated_by: "pdsa-agent"
-  version: "0.1.0-mockup"
-  active_node: "ms-vision"
+  version: "0.2.0-mockup"
+  active_node: "ms-node-schema"
   scope_stack:
     - "root"
     - "mindspace"
     - "ms-requirements"
-    - "ms-vision"
+    - "ms-node-schema"
 
   agents:
     thomas:
@@ -44,6 +46,10 @@ meta:
 
 # =============================================================================
 # THE MINDMAP TREE
+#
+# Schema reminder (Vision PDSA Section 4.1): Every node MUST have:
+#   id, title, owner, type, status, pdsa_phase, pdsa_ref,
+#   definition_of_ready, definition_of_done, children
 # =============================================================================
 
 tree:
@@ -52,6 +58,23 @@ tree:
     owner: "thomas"
     type: "task"
     status: "active"
+    pdsa_phase: null
+    pdsa_ref: null  # Root of the mindspace — no dedicated PDSA
+    definition_of_ready:
+      context: "Thomas has defined the project scope: a mindmap-based project management tool for human-agent alignment."
+      inputs: []
+      status: "ready"
+    definition_of_done:
+      action: "All child projects (mindspace tool, MCP server) reach their Definition of Done."
+      acceptance: "Thomas confirms the mindspace system is operational and useful."
+      quality_gates:
+        - name: "All child projects complete"
+          status: "pending"
+          verifier: "thomas"
+      outputs:
+        - type: "state"
+          description: "Operational mindspace system"
+      status: "not_done"
     children:
 
       # =====================================================================
@@ -66,6 +89,31 @@ tree:
         pdsa_ref:
           git_url: "https://github.com/PichlerThomas/xpollination-mindspace"
           local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace"
+        definition_of_ready:
+          context: "Vision PDSA approved. Grammar phase in progress — answering questions before implementation."
+          inputs:
+            - from: "ms-vision"
+              type: "file"
+              description: "Approved vision PDSA"
+              path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+          status: "ready"
+        definition_of_done:
+          action: "Complete all requirements, features, and infrastructure for the mindspace tool."
+          acceptance: "Mindspace is operational — MCP state machine enforces process, agents interact via tools."
+          quality_gates:
+            - name: "All requirement questions answered"
+              status: "pending"
+              verifier: "pdsa-agent"
+            - name: "MCP state machine operational"
+              status: "pending"
+              verifier: "dev-agent"
+            - name: "Thomas can use the system"
+              status: "pending"
+              verifier: "thomas"
+          outputs:
+            - type: "state"
+              description: "Operational mindspace tool"
+          status: "not_done"
         children:
 
           # --- REQUIREMENTS ---
@@ -74,6 +122,10 @@ tree:
             owner: "pdsa-agent"
             type: "task"
             status: "active"
+            pdsa_phase: "plan"
+            pdsa_ref:
+              git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+              local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
             definition_of_ready:
               context: "Thomas has described the mindmap vision. Trivium Method provides the thinking framework. We are in Grammar phase — gathering and structuring all requirements."
               inputs: []
@@ -140,8 +192,13 @@ tree:
                 owner: "pdsa-agent"
                 type: "task"
                 status: "active"
+                pdsa_phase: "plan"
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Specified in: Vision PDSA Section 4.1 (Unified Node Schema)
                 definition_of_ready:
-                  context: "Vision PDSA Section 4.1 defines a draft schema. Needs validation through simulation."
+                  context: "Vision PDSA Section 4.1 defines a draft schema. Needs validation through simulation. Grammar phase questions Q1-Q6 address open schema decisions."
                   inputs:
                     - from: "ms-vision"
                       type: "file"
@@ -168,8 +225,13 @@ tree:
                 owner: "pdsa-agent"
                 type: "task"
                 status: "active"
+                pdsa_phase: "plan"
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+                  # Specified in: MCP Infra PDSA Section 4 (State Machine: Node Lifecycle)
                 definition_of_ready:
-                  context: "MCP Server PDSA Section 4 defines a draft state machine. Needs validation."
+                  context: "MCP Server PDSA Section 4 defines a draft state machine. Needs validation. Grammar phase questions Q7-Q11 address open state machine decisions."
                   inputs:
                     - from: "mcp-infra-pdsa"
                       type: "file"
@@ -194,6 +256,10 @@ tree:
                 type: "task"
                 status: "complete"
                 pdsa_phase: "complete"
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Specified in: Vision PDSA Section 5 (The Dual-Link Pattern)
                 definition_of_ready:
                   context: "Need a pattern for referencing content across repos that works for both humans (GitHub URLs) and agents (filesystem paths)."
                   inputs: []
@@ -215,8 +281,13 @@ tree:
                 owner: "pdsa-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Specified in: Vision PDSA Section 13.1 (Q16 — MVP Scope)
                 definition_of_ready:
-                  context: "Thomas identified (Q16) that code must link back to PDSAs/requirements so changes can be traced to their impact. This enables quality iteration — change something, know what's affected, test what matters."
+                  context: "Thomas identified (Q16, Vision PDSA Section 13.1) that code must link back to PDSAs/requirements so changes can be traced to their impact. This enables quality iteration — change something, know what's affected, test what matters."
                   inputs:
                     - from: "ms-node-schema"
                       type: "analysis"
@@ -243,8 +314,13 @@ tree:
             owner: "pdsa-agent"
             type: "task"
             status: "pending"
+            pdsa_phase: null
+            pdsa_ref:
+              git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+              local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+              # Specified in: Vision PDSA Section 6 (Graph Traversal and Node Rearrangement)
             definition_of_ready:
-              context: "Features can be defined after Requirements are sufficiently explored. DEPRIORITIZED per Q17: MCP enforcement first, visualization later."
+              context: "Features can be defined after Requirements are sufficiently explored. DEPRIORITIZED per Q17 (Vision PDSA Section 13.2): MCP enforcement first, visualization later."
               inputs:
                 - from: "ms-requirements"
                   type: "analysis"
@@ -271,8 +347,13 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Specified in: Vision PDSA Section 6.1 (Traversal)
                 definition_of_ready:
-                  context: "Scope stack navigation, expand/collapse, breadcrumb. Defined in vision PDSA Section 6."
+                  context: "Scope stack navigation, expand/collapse, breadcrumb. Defined in Vision PDSA Section 6.1."
                   inputs:
                     - from: "ms-node-schema"
                       type: "analysis"
@@ -298,8 +379,13 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Specified in: Vision PDSA Section 6.2 (Node Rearrangement)
                 definition_of_ready:
-                  context: "SortableJS nested lists. Defined in vision PDSA Section 6.2."
+                  context: "SortableJS nested lists. Defined in Vision PDSA Section 6.2."
                   inputs:
                     - from: "ms-feat-graph-traversal"
                       type: "state"
@@ -325,8 +411,13 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Specified in: Vision PDSA Section 4.2 (Self-Aware Node)
                 definition_of_ready:
-                  context: "Each node's intrinsic properties must be visible in the dashboard."
+                  context: "Each node's intrinsic properties must be visible in the dashboard. Defined in Vision PDSA Section 4.2."
                   inputs:
                     - from: "ms-feat-graph-traversal"
                       type: "state"
@@ -353,8 +444,13 @@ tree:
             owner: "dev-agent"
             type: "task"
             status: "pending"
+            pdsa_phase: null
+            pdsa_ref:
+              git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+              local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+              # Specified in: Vision PDSA Section 3 (Mindspace Structure)
             definition_of_ready:
-              context: "Infrastructure can begin when node schema is validated and features are specified. DEPRIORITIZED per Q17: MCP enforcement first, dashboard infrastructure later."
+              context: "Infrastructure can begin when node schema is validated and features are specified. DEPRIORITIZED per Q17 (Vision PDSA Section 13.2): MCP enforcement first, dashboard infrastructure later."
               inputs:
                 - from: "ms-node-schema"
                   type: "analysis"
@@ -387,6 +483,8 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref: null  # Existing v2 stack — no dedicated PDSA, reuses prior implementation
                 definition_of_ready:
                   context: "Already deployed for v2 PM tool. Reuse existing infrastructure on Hetzner."
                   inputs: []
@@ -408,8 +506,13 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Specified in: Vision PDSA Section 10 (Migration Plan)
                 definition_of_ready:
-                  context: "v2 currentContext.yaml must be transformed to mindspace node schema."
+                  context: "v2 currentContext.yaml must be transformed to mindspace node schema. Migration plan in Vision PDSA Section 10."
                   inputs:
                     - from: "ms-node-schema"
                       type: "analysis"
@@ -438,9 +541,35 @@ tree:
         owner: "orchestrator"
         type: "task"
         status: "active"
+        pdsa_phase: "plan"
         pdsa_ref:
           git_url: "https://github.com/PichlerThomas/xpollination-mcp-server"
           local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server"
+        definition_of_ready:
+          context: "Vision PDSA Section 4.4 identifies the MCP server as the infrastructure layer. Thomas confirmed (Q16, Q18)."
+          inputs:
+            - from: "ms-vision"
+              type: "file"
+              description: "Approved vision PDSA with three-actor model"
+              path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+          status: "ready"
+        definition_of_done:
+          action: "Extend MCP server with mindspace state machine, enforce node lifecycle, pass integration tests."
+          acceptance: "MCP tools enforce state machine rules. No agent can bypass quality gates. Single server serves both content pipeline and mindspace."
+          quality_gates:
+            - name: "State machine API operational"
+              status: "pending"
+              verifier: "pdsa-agent"
+            - name: "Content pipeline still works"
+              status: "pending"
+              verifier: "dev-agent"
+            - name: "Thomas approves the system"
+              status: "pending"
+              verifier: "thomas"
+          outputs:
+            - type: "state"
+              description: "MCP server with mindspace enforcement"
+          status: "not_done"
         children:
 
           # --- REQUIREMENTS ---
@@ -449,6 +578,32 @@ tree:
             owner: "pdsa-agent"
             type: "task"
             status: "active"
+            pdsa_phase: "plan"
+            pdsa_ref:
+              git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+              local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+            definition_of_ready:
+              context: "Vision PDSA approved. Three-actor model defines MCP server's new role. Grammar phase questions Q12-Q15 address open API decisions."
+              inputs:
+                - from: "ms-vision"
+                  type: "file"
+                  description: "Approved vision PDSA"
+                  path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+              status: "ready"
+            definition_of_done:
+              action: "Answer all requirement questions for MCP server's infrastructure role."
+              acceptance: "MCP Infra PDSA approved by Thomas. Zero-knowledge protocol defined."
+              quality_gates:
+                - name: "MCP Infra PDSA approved"
+                  status: "pending"
+                  verifier: "thomas"
+                - name: "Zero-knowledge protocol documented"
+                  status: "pending"
+                  verifier: "pdsa-agent"
+              outputs:
+                - type: "analysis"
+                  description: "Complete MCP server requirements"
+              status: "not_done"
             children:
 
               - id: "mcp-infra-pdsa"
@@ -495,8 +650,13 @@ tree:
                 owner: "pdsa-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mindspace/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md"
+                  # Conceptual basis in: Vision PDSA Section 4.4 (Three-Actor Model)
                 definition_of_ready:
-                  context: "The three-actor model says agents are zero-knowledge workers. Need to define the exact agent-to-MCP interaction protocol."
+                  context: "The three-actor model (Vision PDSA Section 4.4) says agents are zero-knowledge workers. Need to define the exact agent-to-MCP interaction protocol. Grammar phase questions Q25-Q29 (Area F) address this."
                   inputs:
                     - from: "mcp-infra-pdsa"
                       type: "file"
@@ -520,6 +680,32 @@ tree:
             owner: "pdsa-agent"
             type: "task"
             status: "active"
+            pdsa_phase: null
+            pdsa_ref:
+              git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+              local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+              # Features defined in: MCP Infra PDSA Section 3 (API Surface)
+            definition_of_ready:
+              context: "Content pipeline is complete. Mindspace features depend on MCP Infra PDSA approval."
+              inputs:
+                - from: "mcp-requirements"
+                  type: "analysis"
+                  description: "Approved MCP requirements"
+              status: "not_ready"
+            definition_of_done:
+              action: "All MCP features implemented: content pipeline (done) + mindspace state machine API (pending)."
+              acceptance: "Both content pipeline and mindspace tools operational."
+              quality_gates:
+                - name: "Content pipeline tools work"
+                  status: "pass"
+                  verifier: "dev-agent"
+                - name: "Mindspace state machine API works"
+                  status: "pending"
+                  verifier: "pdsa-agent"
+              outputs:
+                - type: "state"
+                  description: "All MCP features operational"
+              status: "not_done"
             children:
 
               - id: "mcp-feat-content-pipeline"
@@ -528,6 +714,10 @@ tree:
                 type: "task"
                 status: "complete"
                 pdsa_phase: "complete"
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/tree/main/docs/pdca"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/docs/pdca"
+                  # Historical PDSAs in docs/pdca/ (pre-2026-01-30 naming)
                 definition_of_ready:
                   context: "Original MCP server purpose. All tools implemented."
                   inputs: []
@@ -552,8 +742,13 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+                  # Specified in: MCP Infra PDSA Section 3 (API Surface)
                 definition_of_ready:
-                  context: "Requires MCP infrastructure PDSA approved and node schema finalized."
+                  context: "Requires MCP infrastructure PDSA approved and node schema finalized. API defined in MCP Infra PDSA Section 3."
                   inputs:
                     - from: "mcp-infra-pdsa"
                       type: "file"
@@ -589,6 +784,32 @@ tree:
             owner: "dev-agent"
             type: "task"
             status: "active"
+            pdsa_phase: null
+            pdsa_ref:
+              git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+              local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+              # Specified in: MCP Infra PDSA Section 5 (Data Model Extension)
+            definition_of_ready:
+              context: "Existing stack is operational. Extension depends on MCP Infra PDSA approval."
+              inputs:
+                - from: "mcp-infra-pdsa"
+                  type: "file"
+                  description: "Approved MCP infrastructure PDSA with schema and implementation phases"
+              status: "not_ready"
+            definition_of_done:
+              action: "Extend infrastructure: SQLite schema, unit tests, deployment."
+              acceptance: "All infrastructure components operational. Existing content pipeline unaffected."
+              quality_gates:
+                - name: "Schema migration clean"
+                  status: "pending"
+                  verifier: "dev-agent"
+                - name: "Unit tests pass"
+                  status: "pending"
+                  verifier: "dev-agent"
+              outputs:
+                - type: "state"
+                  description: "Extended MCP server infrastructure"
+              status: "not_done"
             children:
 
               - id: "mcp-infra-existing"
@@ -596,6 +817,11 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "complete"
+                pdsa_phase: "complete"
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mcp-server"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server"
+                  # Already built — reference is the repo itself
                 definition_of_ready:
                   context: "Already built and deployed."
                   inputs: []
@@ -617,6 +843,11 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md"
+                  # Specified in: MCP Infra PDSA Section 5 (Data Model Extension)
                 definition_of_ready:
                   context: "MCP infrastructure PDSA Section 5 defines the schema. Implement it."
                   inputs:
@@ -645,6 +876,11 @@ tree:
                 owner: "dev-agent"
                 type: "task"
                 status: "pending"
+                pdsa_phase: null
+                pdsa_ref:
+                  git_url: "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/CLAUDE.md"
+                  local_path: "/home/developer/workspaces/github/PichlerThomas/xpollination-mcp-server/CLAUDE.md"
+                  # Test requirements defined in: MCP server CLAUDE.md TODO section
                 definition_of_ready:
                   context: "Tests defined in MCP server CLAUDE.md TODO section. 13 component tests + 1 e2e test."
                   inputs: []

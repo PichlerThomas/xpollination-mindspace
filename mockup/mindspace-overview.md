@@ -53,7 +53,7 @@ root → Grammar Phase — 24 questions remaining across active nodes (5 answere
 **Phase:** Trivium Grammar — gathering facts, identifying gaps, asking the right questions before building.
 **MVP decision (Q16):** MCP state machine only. No dashboard. Enforcement first.
 
-## Dependency Flow
+## Dependency Flow (click nodes to open specs)
 
 ```mermaid
 flowchart LR
@@ -69,6 +69,17 @@ flowchart LR
     infra_pdsa --> schema_ext["SQLite Schema Extension"]
     schema --> schema_ext
 
+    click vision "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md" "Open Vision PDSA"
+    click schema "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md" "Vision PDSA Section 4.1"
+    click infra_pdsa "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md" "Open MCP Infra PDSA"
+    click traceability "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md" "Vision PDSA Section 13.1"
+    click zero_k "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md" "Vision PDSA Section 4.4"
+    click state_api "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md" "MCP Infra PDSA Section 3"
+    click features "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md" "Vision PDSA Section 6"
+    click migration "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md" "Vision PDSA Section 10"
+    click ms_infra "https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md" "Vision PDSA Section 3"
+    click schema_ext "https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md" "MCP Infra PDSA Section 5"
+
     style vision fill:#22c55e,color:#000
     style schema fill:#f59e0b,color:#000
     style infra_pdsa fill:#f59e0b,color:#000
@@ -82,6 +93,23 @@ flowchart LR
 ```
 
 **Legend:** Green = approved | Amber = active | Light gray = pending | Dark gray = deprioritized
+**Tip:** Click any node to open the PDSA document that specifies it.
+
+## PDSA Quick Links
+
+| Node | Spec Location | GitHub Link |
+|------|--------------|-------------|
+| Vision PDSA | Vision PDSA (full document) | [mindspace-vision.pdsa.md](https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md) |
+| Node Schema | Vision PDSA Section 4.1 | [mindspace-vision.pdsa.md](https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md) |
+| State Machine | MCP Infra PDSA Section 4 | [mcp-server-infrastructure-layer.pdsa.md](https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md) |
+| Dual-Links | Vision PDSA Section 5 | [mindspace-vision.pdsa.md](https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md) |
+| Traceability | Vision PDSA Section 13.1 | [mindspace-vision.pdsa.md](https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md) |
+| MCP Infra PDSA | MCP Infra PDSA (full document) | [mcp-server-infrastructure-layer.pdsa.md](https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md) |
+| Zero-Knowledge | Vision PDSA Section 4.4 | [mindspace-vision.pdsa.md](https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md) |
+| State Machine API | MCP Infra PDSA Section 3 | [mcp-server-infrastructure-layer.pdsa.md](https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md) |
+| SQLite Extension | MCP Infra PDSA Section 5 | [mcp-server-infrastructure-layer.pdsa.md](https://github.com/PichlerThomas/xpollination-mcp-server/blob/main/docs/pdsa/2026-02-02-UTC-1500.mcp-server-infrastructure-layer.pdsa.md) |
+| Data Migration | Vision PDSA Section 10 | [mindspace-vision.pdsa.md](https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md) |
+| MVP Decisions | Vision PDSA Section 13 | [mindspace-vision.pdsa.md](https://github.com/PichlerThomas/xpollination-mindspace/blob/main/docs/pdsa/2026-02-02-UTC-1300.mindspace-vision.pdsa.md) |
 
 ---
 
